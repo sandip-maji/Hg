@@ -1,0 +1,7 @@
+---
+applications:
+- name: ecomApp
+  path: build/libs/ecomApp-0.0.1-SNAPSHOT.jar
+  domain: cfapps.io
+  memory: 1024M
+  instances: 1
