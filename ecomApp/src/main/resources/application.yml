@@ -3,9 +3,9 @@ spring:
     name: pivotalservice
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/hg?autoreconnect=true
-    username: root
-    password: admin
+    url: jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/ad_1f038b26493e3cf?autoreconnect=true
+    username: bb53e0759ddfb8
+    password: 68ab0aac
     testOnBorrow: true
     testWhileIdle: true
     timeBetweenEvictionRunsMillis: 60000

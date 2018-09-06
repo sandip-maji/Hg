@@ -5,7 +5,7 @@ import java.util.List;
 public class HotelModel {
 	
 	
-	
+	private String id;
 	private String starRate;
 	private List<String> amenity;
 	private String hotelId;
@@ -17,6 +17,7 @@ public class HotelModel {
 	private boolean hotelCheckedIn;
 	private String checkInRefId;
 	private boolean webCheckedIn;
+	private boolean feedbackEnabled;
 	
 	
 	private boolean checkedOut;
@@ -118,6 +119,18 @@ public class HotelModel {
 	}
 	public void setWebCheckedIn(boolean webCheckedIn) {
 		this.webCheckedIn = webCheckedIn;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public boolean isFeedbackEnabled() {
+		return feedbackEnabled;
+	}
+	public void setFeedbackEnabled(boolean feedbackEnabled) {
+		this.feedbackEnabled = feedbackEnabled;
 	}
 	
 

@@ -45,14 +45,92 @@ public class EcomController {
 
 	@GetMapping(value = "/bookingInfo")
 	public ResponseEntity<HgModel> getBookingInfo(
-			@ApiParam(value = "bookedId", required = true, defaultValue = "1234") @RequestParam("bookedId") String bookedId) {
+			@ApiParam(value = "bookedId", required = true) @RequestParam("bookedId") String bookedId) {
 
-		HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		// HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		List<HgModel> hgModels = pivotalDAOService.getHgById(bookedId);
+
+		HgModel hgModel = null;
+		if (null != hgModels && !hgModels.isEmpty()) {
+			hgModel = hgModels.stream().findFirst().get();
+		}
+
+		return new ResponseEntity<HgModel>(hgModel, HttpStatus.ACCEPTED);
+	}
+	
+	
+	@ApiOperation(value = "webCheckedIn", nickname = "webCheckedIn")
+	@ApiResponses(value = { @ApiResponse(code = 500, message = "Server error"),
+			@ApiResponse(code = 404, message = "Service not found"),
+			@ApiResponse(code = 200, message = "Successful retrieval", response = HgModel.class, responseContainer = "List") })
+
+	@GetMapping(value = "/webCheckedIn")
+	public ResponseEntity<HgModel> getWebCheckedIn(
+			@ApiParam(value = "bookedId", required = true) @RequestParam("bookedId") String bookedId,			
+			@ApiParam(value = "hotelId", required = true) @RequestParam("hotelId") String hotelId) {
+
+		// HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		List<HgModel> hgModels = pivotalDAOService.getHgCheckInById(bookedId,hotelId);
+
+		HgModel hgModel = null;
+		if (null != hgModels && !hgModels.isEmpty()) {
+			hgModel = hgModels.stream().findFirst().get();
+		}
+
+		return new ResponseEntity<HgModel>(hgModel, HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping(value = "/webCheckedOut")
+	public ResponseEntity<HgModel> getWebCheckedOut(
+			@ApiParam(value = "bookedId", required = true) @RequestParam("bookedId") String bookedId,			
+			@ApiParam(value = "hotelId", required = true) @RequestParam("hotelId") String hotelId) {
+
+		// HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		List<HgModel> hgModels = pivotalDAOService.getHgCheckOutById(bookedId,hotelId);
+
+		HgModel hgModel = null;
+		if (null != hgModels && !hgModels.isEmpty()) {
+			hgModel = hgModels.stream().findFirst().get();
+		}
+
+		return new ResponseEntity<HgModel>(hgModel, HttpStatus.ACCEPTED);
+	}
+	
+	
+	@GetMapping(value = "/feedBackDone")
+	public ResponseEntity<HgModel> getFeedBackDone(
+			@ApiParam(value = "bookedId", required = true) @RequestParam("bookedId") String bookedId,			
+			@ApiParam(value = "hotelId", required = true) @RequestParam("hotelId") String hotelId) {
+
+		// HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		List<HgModel> hgModels = pivotalDAOService.getHgCheckOutById(bookedId,hotelId);
+
+		HgModel hgModel = null;
+		if (null != hgModels && !hgModels.isEmpty()) {
+			hgModel = hgModels.stream().findFirst().get();
+		}
+
+		return new ResponseEntity<HgModel>(hgModel, HttpStatus.ACCEPTED);
+	}
+	
+	
+	@GetMapping(value = "/resetBooleans")
+	public ResponseEntity<HgModel> resetBooleans(
+			@ApiParam(value = "bookedId", required = true) @RequestParam("bookedId") String bookedId,			
+			@ApiParam(value = "hotelId", required = true) @RequestParam("hotelId") String hotelId) {
+
+		// HgModel hgModel = commonUtil.getMockHgModelByBookingId(bookedId);
+		List<HgModel> hgModels = pivotalDAOService.resetBooleans(bookedId,hotelId);
+
+		HgModel hgModel = null;
+		if (null != hgModels && !hgModels.isEmpty()) {
+			hgModel = hgModels.stream().findFirst().get();
+		}
 
 		return new ResponseEntity<HgModel>(hgModel, HttpStatus.ACCEPTED);
 	}
 
-	@ApiOperation(value = "roomDetails", nickname = "roomDetails")
+	/*@ApiOperation(value = "roomDetails", nickname = "roomDetails")
 	@ApiResponses(value = { @ApiResponse(code = 500, message = "Server error"),
 			@ApiResponse(code = 404, message = "Service not found"),
 			@ApiResponse(code = 200, message = "Successful retrieval", response = RoomModel.class, responseContainer = "List") })
@@ -90,6 +168,6 @@ public class EcomController {
 	public String createUser(@RequestBody UserModel user) {
 		pivotalDAOService.createUser(user);
 		return "User created successfully";
-	}
+	}*/
 
 }

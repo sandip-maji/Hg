@@ -1,9 +1,11 @@
 package com.org.ecom.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HgModel {
 	
+	private String id;
 	private String bookingId;
 	private List<HotelModel> hotelDetails;
 	private GuestInfoModel guestInfo;
@@ -14,6 +16,9 @@ public class HgModel {
 		this.bookingId = bookingId;
 	}
 	public List<HotelModel> getHotelDetails() {
+		if(null==hotelDetails) {
+			hotelDetails = new ArrayList<>();
+		}
 		return hotelDetails;
 	}
 	public void setHotelDetails(List<HotelModel> hotelDetails) {
@@ -24,6 +29,12 @@ public class HgModel {
 	}
 	public void setGuestInfo(GuestInfoModel guestInfo) {
 		this.guestInfo = guestInfo;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 
